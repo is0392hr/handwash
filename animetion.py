@@ -5,9 +5,9 @@ import sys
 import random
 import time
 
-import RPi.GPIO as GPIO
+# import RPi.GPIO as GPIO
 
-from utils import detector_utils as detector_utils
+# from utils import detector_utils as detector_utils
 import cv2
 import tensorflow.compat.v1 as tf
 tf.disable_v2_behavior()
@@ -15,7 +15,7 @@ tf.disable_v2_behavior()
 import datetime
 import argparse
 
-
+import qrcode
 
 #detection_graph, sess = detector_utils.load_inference_graph()
 
@@ -151,7 +151,7 @@ def animation(score_thresh, fps, video_source, width, height, display, num_worke
     ini_time = datetime.datetime.now()
 
     while (datetime.datetime.now() - ini_time).total_seconds() < 20:
-        count += detect_hand(score_thresh=score_thresh, fps=fps, video_source=video_source, width=width, height=height, display=display, num_workers=num_workers, queue_size=queue_size, cap=cap)
+        count += 10*detect_hand(score_thresh=score_thresh, fps=fps, video_source=video_source, width=width, height=height, display=display, num_workers=num_workers, queue_size=queue_size, cap=cap)
         print(count)
         screen.fill((0, 0, 0, 0)) # 背景色の指定。RGBのはず
 
@@ -164,17 +164,25 @@ def animation(score_thresh, fps, video_source, width, height, display, num_worke
         pygame.draw.rect(GameDisplay, (0,0,0), (w-50, 10, 30, HP))
 
         if HP-count > HP*0.5:
+            score = 0
             pygame.draw.rect(GameDisplay, (0,255,0), (w-50, 10+count, 30, HP-count))
         elif HP-count > HP*0.2:
+            score = 30
             num_virus = 10
             scale = random.uniform(0.1,0.15)
             pygame.draw.rect(GameDisplay, (255,110,0), (w-50, 10+count, 30, HP-count))
         elif HP-count > 0:
+            score = 100
             scale = random.uniform(0.05,0.08)
             num_virus = 5
             pygame.draw.rect(GameDisplay, (255,0,0), (w-50, 10+count, 30, HP-count))
         else:
             FINISH = True
+            qr = qrcode.QRCode()
+            qr.add_data(score)
+            qr.make()
+            img = qr.make_image()
+            img.save('QR_img/test.png')
             count = 0
 
         if FINISH:   
@@ -189,12 +197,20 @@ def animation(score_thresh, fps, video_source, width, height, display, num_worke
                 pygame.time.wait(300) # 更新間隔
                 pygame.display.update() # 画面更新
     
-            else:
+            elif count < 15:
                 screen.fill((0, 0, 0, 0))
                 bg = pygame.image.load("img/jidou_tearai_syoudoku.png").convert_alpha() # 背景画像の指定
                 rect_bg = bg.get_rect()
                 screen.blit(pygame.transform.scale(bg, (w,h)), rect_bg) # 背景画像の描画
-                pygame.time.wait(1500) # 更新間隔
+                pygame.time.wait(1000) # 更新間隔
+                pygame.display.update() # 画面更新
+
+            else:
+                screen.fill((0, 0, 0, 0))
+                bg = pygame.image.load("QR_img/test.png").convert_alpha() # 背景画像の指定
+                rect_bg = bg.get_rect()
+                screen.blit(pygame.transform.scale(bg, (w,h)), rect_bg) # 背景画像の描画
+                pygame.time.wait(1000) # 更新間隔
                 pygame.display.update() # 画面更新
             
         
