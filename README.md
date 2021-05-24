@@ -1,5 +1,6 @@
 ## About
-This program was made for evaluating your handwash. It scores your hand washing based on the count that the integrated hand detector and animation that visualize the effect of your hand wash will be on the display. This system requires following hardwares:
+This program was made for evaluating your handwash. It scores your hand washing based on the count that the integrated hand detector and animation that visualize the effect of your hand wash will be on the display. 
+This system requires following hardwares:
 - Jetson nano (raspberry pi works as well but better to have GPU)
 - Camera (picam or webcam)
 - Ultrasonic sensor (hc-sr04)
