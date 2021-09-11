@@ -12,6 +12,7 @@ Mobile Appへのリポジトリのリンクは[こちら](https://github.com/is0
 **紹介動画は[こちら](https://www.youtube.com/watch?v=PBns3sUhe7Y)**
 
 **スライドは[こちら](https://docs.google.com/presentation/d/1fVfTtds5QCr5dvoYWCT9diF7SFI0JmmAsynQwNJ5s38/edit?usp=sharing)**
+**技育展用のスライドは[こちら](https://docs.google.com/presentation/d/1Y1mNiNGpw-JUF-rjivxDG-eDxOnEd9h1sDW5kVuPOHs/edit?usp=sharing)**
 
 ## 開発体制
 <table>
