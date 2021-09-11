@@ -1,4 +1,4 @@
-![ヘッダー画像](/images/Logo.png)
+![ヘッダー画像](https://github.com/is0392hr/HandwashApp/blob/main/assets/images/Logo.png?raw=true)
 # 手洗い促進アプリ 御手洗PLUS
 京都大学大学院情報学研究科社会情報学専攻の実習クラスで作成したシステムです。  
 当該授業で**最優秀賞**を受賞しました🎉🎉🎉
