@@ -51,22 +51,71 @@ def load_inference_graph():
 
 # draw the detected bounding boxes on the images
 # You can modify this to also draw a label.
-def draw_box_on_image(num_hands_detect, score_thresh, scores, boxes, im_width, im_height, image_np):
-    detected = 0
-    for i in range(num_hands_detect):
-        if (scores[i] > score_thresh):
-            detected = 1
-            (left, right, top, bottom) = (boxes[i][1] * im_width, boxes[i][3] * im_width,
-                                          boxes[i][0] * im_height, boxes[i][2] * im_height)
+def draw_box_on_image(
+            num_hands_detect, 
+            score_thresh, 
+            scores, 
+            boxes, 
+            im_width, 
+            im_height, 
+            image_np, 
+            visualize
+            ):
+
+    center_x = 0
+    center_y = 0
+    detected_boxes = [None]
+
+    max_idx = np.argmax(scores)
+
+    if (scores[max_idx] > score_thresh):
+        detected_boxes = boxes[max_idx].tolist()
+        (left, right, top, bottom) = (boxes[max_idx][1] * im_width, boxes[max_idx][3] * im_width,
+                                      boxes[max_idx][0] * im_height, boxes[max_idx][2] * im_height)
+        center_x = int((left+right)/2)
+        center_y = int((top+bottom)/2)
+        
+        if visualize:
             p1 = (int(left), int(top))
             p2 = (int(right), int(bottom))
+            cv2.circle(image_np, (center_x, center_y), 1,(77, 255, 9), 2)
             cv2.rectangle(image_np, p1, p2, (77, 255, 9), 3, 1)
-    return detected
+ 
+    return center_x, center_y, detected_boxes
+
+def draw_ARbbox_on_image(
+            boxes, 
+            im_width, 
+            im_height, 
+            image_np, 
+            isWashing,
+            ):
+    i = 0
+    if boxes[0] != None:
+        (left, right, top, bottom) = (boxes[1] * im_width, boxes[3] * im_width,
+                                      boxes[0] * im_height, boxes[2] * im_height)
+        cx = int((left+right)/2)
+        cy = int((top+bottom)/2)
+        p1 = (int(left), int(top))
+        p2 = (int(right), int(bottom))
+        cv2.circle(image_np, (cx, cy), 1,(77, 255, 9), 2)
+        if isWashing:
+            cv2.putText(image_np, "washing hand", (p1[0], p1[1]-10),
+                cv2.FONT_HERSHEY_SIMPLEX, 0.75, (77, 255, 9), 2)
+            cv2.rectangle(image_np, p1, p2, (77, 255, 9), 3, 1)
+        else:
+            cv2.putText(image_np, "Please wash properly", (p1[0], p1[1]-10),
+                cv2.FONT_HERSHEY_SIMPLEX, 0.75, (255, 0, 0), 2)
+            cv2.rectangle(image_np, p1, p2, (255, 0, 0), 3, 1)
 
 
 # Show fps value on image.
 def draw_fps_on_image(fps, image_np):
     cv2.putText(image_np, fps, (20, 50),
+                cv2.FONT_HERSHEY_SIMPLEX, 0.75, (77, 255, 9), 2)
+
+def draw_framecount_on_image(fc, image_np):
+    cv2.putText(image_np, fc, (320, 50),
                 cv2.FONT_HERSHEY_SIMPLEX, 0.75, (77, 255, 9), 2)
 
 
