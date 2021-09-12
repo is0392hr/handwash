@@ -44,7 +44,7 @@ Mobile Appへのリポジトリのリンクは[こちら](https://github.com/is0
   </tr>
   <tr>
     <th>使用技術</th>
-    <td>Flutter(Dart)</td>
+    <td>Python(Tensorflow for hand detection)</td>
   </tr>
 </table>
 
