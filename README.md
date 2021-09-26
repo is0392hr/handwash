@@ -9,7 +9,7 @@
 
 Mobile Appへのリポジトリのリンクは[こちら](https://github.com/is0392hr/HandwashApp)
 
-**紹介動画は[こちら](https://www.youtube.com/watch?v=PBns3sUhe7Y)**
+**紹介動画は[こちら](https://www.youtube.com/watch?v=9nU7tt7SAoc&t=2s)**
 
 **スライドは[こちら](https://docs.google.com/presentation/d/1fVfTtds5QCr5dvoYWCT9diF7SFI0JmmAsynQwNJ5s38/edit?usp=sharing)**
 
