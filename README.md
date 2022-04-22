@@ -7,7 +7,7 @@
 ユーザがHandwash Evaluatorが設置されている自宅、研究室や職場へ到着すると、アプリからプッシュ通知が届きます。Handwash Evaluatorはユーザの手洗い開始を検知し、ユーザの手洗いを評価します。手洗い評価はHandwash Evaluatorに繋がれたモニターに映し出されているアニメーションと連動し可視化されます。
 手洗いの終了を検知するとモニターにQRが映し出され、ユーザはアプリでQRをスキャンすることでスコアを記録します。
 
-Mobile Appへのリポジトリのリンクは[こちら](https://github.com/is0392hr/HandwashApp)
+Mobile Appへのリポジトリのリンクは[こちら](https://github.com/koki-asami/HandwashApp)
 
 **紹介動画は[こちら](https://www.youtube.com/watch?v=9nU7tt7SAoc&t=2s)**
 
